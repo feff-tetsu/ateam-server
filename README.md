@@ -1,24 +1,30 @@
-# README
+# エイチームインターン向け
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Dockerを使ってます
 
-Things you may want to cover:
+* Rails 5.1
+* Ruby 2.3.1
+run
+## 環境構築
+1. git clone  
+よしなにして下しあ
+2. エイリアスを張りましょう  
+`. ./set-alias.sh`  
+を実行すると
+```
+docker-compose run web --rm => dcrun
+dcrun bundle exec => dcrun-be
+dcrun-be rails console => dcrun-be-c
+```
+になります  
+3. bundle install  
+`dcrun bundle install`  
+4. アップ
+```
+docker-compose build
+docker-compose up
+```
+  
+  で行ける気がする
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
