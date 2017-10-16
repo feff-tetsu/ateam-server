@@ -1,6 +1,7 @@
 # エイチームインターン向け
 
 Dockerを使ってます
+Docker for Macを入れてね:heart:
 
 * Rails 5.1
 * Ruby 2.3.1
