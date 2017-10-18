@@ -1,12 +1,20 @@
 module V1
   class UsersController < ApplicationController
     skip_before_action :authenticate_user_from_token!, only: [:create]
-  
+
+    def index
+      render json: User.all, each_serializer: V1::UserSerializer
+    end
+
+    def show
+      render json: User.find(params[:id]), each_serializer: V1::UserSerializer
+    end
+
     # POST
     # Create an user
     def create
       @user = User.new user_params
-  
+
       if @user.save!
         render json: @user, serializer: V1::SessionSerializer, root: nil
       else
@@ -14,19 +22,10 @@ module V1
       end
     end
 
-    def index
-      render json: User.all, each_serializer: V1::UserSerializer
-    end
+    private
 
-    def show
-      @user = User.find_by(params[:id])
-      render json: @user
-    end
-
-  private
-  
     def user_params
-        params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :password)
     end
   end
 end
