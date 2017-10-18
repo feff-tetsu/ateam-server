@@ -7,13 +7,22 @@ module V1
     def create
       @user = User.new user_params
   
-    if @user.save!
-      render json: @user, serializer: V1::SessionSerializer, root: nil
-    else
-      render json: { error: t('user_create_error') }, status: :unprocessable_entity
+      if @user.save!
+        render json: @user, serializer: V1::SessionSerializer, root: nil
+      else
+        render json: { error: t('user_create_error') }, status: :unprocessable_entity
+      end
     end
-  end
-  
+
+    def index
+      render json: User.all, each_serializer: V1::UserSerializer
+    end
+
+    def show
+      @user = User.find_by(params[:id])
+      render json: @user
+    end
+
   private
   
     def user_params
