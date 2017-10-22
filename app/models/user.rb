@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :baggages
   has_one :rental_user
+  has_one :cart
          
   def update_access_token!
     self.access_token = "#{self.id}:#{Devise.friendly_token}"
