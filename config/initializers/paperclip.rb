@@ -1,0 +1,1 @@
+Paperclip::Attachment.default_options[:url] = 'ateam-demoapp.s3.amazonaws.com'
