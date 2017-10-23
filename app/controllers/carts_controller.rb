@@ -41,7 +41,6 @@ class CartsController < ApplicationController
   def rental
     @baggages = Cart.find(params[:cart_id]).baggages.where(rental_enabled: true)
     user = User.find(params[:user_id])
-    binding.pry
     if @baggages.empty?
       raise :errors
     else
