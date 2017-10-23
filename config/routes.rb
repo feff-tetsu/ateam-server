@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   
   resource :login, only: [:create], controller: :sessions
   resources :users, only: [:index, :show, :create] do
+    put '/get_point' => 'users#get_point'
     resources :baggages
-    resources :carts do
+    resources :carts, only: [] do
       post '/rental' => 'carts#rental'
     end
   end

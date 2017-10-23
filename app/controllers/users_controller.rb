@@ -22,9 +22,16 @@
       end
     end
 
+    def get_point
+      g_point = params.require(:point)
+      @user = User.find(params[:user_id])
+      @user.update!(points: @user.points + g_point)
+      render json: @user
+    end
+
     private
 
     def user_params
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :password, :points)
     end
   end
