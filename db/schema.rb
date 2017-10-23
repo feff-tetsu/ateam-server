@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023025019) do
+ActiveRecord::Schema.define(version: 20171023054009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20171023025019) do
     t.bigint "rental_user_id"
     t.integer "points", default: 0
     t.string "photo_url", default: "https://s3-ap-northeast-1.amazonaws.com/ateam-demoapp/22318900039_d7233ca6d1_q.jpg"
+    t.string "size"
+    t.string "sex"
+    t.date "start_data"
     t.index ["rental_user_id"], name: "index_baggages_on_rental_user_id"
     t.index ["user_id"], name: "index_baggages_on_user_id"
   end

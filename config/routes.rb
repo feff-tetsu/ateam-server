@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   resource :login, only: [:create], controller: :sessions
   resources :users, only: [:index, :show, :create] do
     resources :baggages
+    resources :carts do
+      post '/rental' => 'carts#rental'
+    end
   end
 
   resources :baggages
-    post '/rental/:id' => 'baggages#rental'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
