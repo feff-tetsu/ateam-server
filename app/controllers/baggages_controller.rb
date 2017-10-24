@@ -38,6 +38,16 @@
       @baggage.destroy
     end
 
+    def search
+      search_params = {}
+      ['sex', 'genre', 'size'].each do |key|
+        unless params[key].nil?
+          search_params[key] = params[key]
+        end
+      end
+      @baggages = Baggage.where(search_params)
+      render json: @baggages
+    end
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_baggage
