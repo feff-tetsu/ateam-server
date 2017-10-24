@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023054009) do
+ActiveRecord::Schema.define(version: 20171024010706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171023054009) do
     t.string "size"
     t.string "sex"
     t.date "start_data"
+    t.string "genre"
     t.index ["rental_user_id"], name: "index_baggages_on_rental_user_id"
     t.index ["user_id"], name: "index_baggages_on_user_id"
   end
@@ -70,6 +71,9 @@ ActiveRecord::Schema.define(version: 20171023054009) do
     t.string "access_token"
     t.boolean "premium", default: false
     t.integer "points", default: 0
+    t.string "avatar_url", default: "https://s3-ap-northeast-1.amazonaws.com/ateam-demoapp/default_avatar.jpg"
+    t.string "last_name"
+    t.string "first_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
