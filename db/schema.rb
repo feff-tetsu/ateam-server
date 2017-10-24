@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024010706) do
+ActiveRecord::Schema.define(version: 20171024064902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,9 @@ ActiveRecord::Schema.define(version: 20171024010706) do
     t.string "avatar_url", default: "https://s3-ap-northeast-1.amazonaws.com/ateam-demoapp/default_avatar.jpg"
     t.string "last_name"
     t.string "first_name"
+    t.string "user_name"
+    t.integer "credit_number"
+    t.integer "credit_password"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
