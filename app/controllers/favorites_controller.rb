@@ -44,8 +44,9 @@ class FavoritesController < ApplicationController
   end
 
   def add_favorite
+    binding.pry
     @favorite_baggage = FavoriteBaggage.new(favorite_id: User.find(params[:user_id]).favorite.id, baggage_id: params[:baggage_id])
-    if User.find(params[:user_id]).favorite.baggages.ids.include?(params[:baggage_id])
+    if !User.find(params[:user_id]).favorite.baggages.ids.include?(params[:baggage_id].to_i)
       if @favorite_baggage.save
         render json: Favorite.find_by(user_id: params[:user_id]).baggages
       else
