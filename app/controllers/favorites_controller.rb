@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:show, :update, :destroy]
 
   # GET /favorites
   def index
@@ -38,10 +37,29 @@ class FavoritesController < ApplicationController
     @favorite.destroy
   end
 
+  # GET /users/:user_id/favorites/:favorite_id/baggages
+  def baggages
+    @baggages = Favorite.find(User.find(params[:user_id]).favorite.id).baggages
+    render json: @baggages
+  end
+
+  def add_favorite
+    @favorite_baggage = FavoriteBaggage.new(favorite_id: User.find(params[:user_id]).favorite.id, baggage_id: params[:baggage_id])
+    if User.find(params[:user_id]).favorite.baggages.ids.include?(params[:baggage_id])
+      if @favorite_baggage.save
+        render json: Favorite.find_by(user_id: params[:user_id]).baggages
+      else
+        raise :errors
+      end
+    else
+      render json: Favorite.find_by(user_id: params[:user_id]).baggages
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite
-      @favorite = Favorite.find(params[:id])
+      @favorite = Favorite.find(params[:user_id])
     end
 
     # Only allow a trusted parameter "white list" through.

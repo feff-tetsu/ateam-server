@@ -56,6 +56,6 @@
 
       # Only allow a trusted parameter "white list" through.
       def baggage_params
-        params.require(:baggage).permit(:name, :user_id)
+        params.require(:baggage).permit(:name, :user_id, :sex, :size, :points, :genre)
       end
   end

@@ -8,10 +8,10 @@ class User < ApplicationRecord
        
   validates :email, presence: true
 
-  has_many :baggages
-  has_one :rental_user
-  has_one :cart
-  has_one :favorite
+  has_many :baggages, :dependent => :destroy
+  has_one :rental_user, :dependent => :destroy
+  has_one :cart, :dependent => :destroy
+  has_one :favorite, :dependent => :destroy
          
   def update_access_token!
     self.access_token = "#{self.id}:#{Devise.friendly_token}"

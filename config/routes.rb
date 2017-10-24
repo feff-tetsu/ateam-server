@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  resources :favorites
-  resources :carts
   devise_for :user, only: []
   
   resource :login, only: [:create], controller: :sessions
   resources :users, only: [:index, :show, :create] do
     put '/get_point' => 'users#get_point'
-    resources :baggages
+    get '/favorites' => 'favorites#baggages'
+    resources :baggages do
+      post '/add_favorite' => 'favorites#add_favorite'
+    end
     resources :carts, only: [] do
       post '/rental' => 'carts#rental'
     end

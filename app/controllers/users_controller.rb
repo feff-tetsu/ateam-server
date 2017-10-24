@@ -16,6 +16,8 @@
 
       if @user.save!
         RentalUser.create!(user_id: @user.id)
+        Favorite.create!(user_id: @user.id)
+        Cart.create!(user_id: @user.id)
         render json: @user, serializer: SessionSerializer, root: nil
       else
         render json: { error: t('user_create_error') }, status: :unprocessable_entity
