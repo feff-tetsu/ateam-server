@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024064902) do
+ActiveRecord::Schema.define(version: 20171024085522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,22 @@ ActiveRecord::Schema.define(version: 20171024064902) do
     t.datetime "updated_at", null: false
     t.index ["baggage_id"], name: "index_carts_baggages_on_baggage_id"
     t.index ["cart_id"], name: "index_carts_baggages_on_cart_id"
+  end
+
+  create_table "favorite_baggages", force: :cascade do |t|
+    t.bigint "baggage_id"
+    t.bigint "favorite_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["baggage_id"], name: "index_favorite_baggages_on_baggage_id"
+    t.index ["favorite_id"], name: "index_favorite_baggages_on_favorite_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "rental_users", force: :cascade do |t|
