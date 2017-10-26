@@ -4,12 +4,11 @@ Rails.application.routes.draw do
   resource :login, only: [:create], controller: :sessions
   resources :users, only: [:index, :show, :create] do
     put '/get_point' => 'users#get_point'
+    post '/rental' => 'carts#rental'
     get '/favorites' => 'favorites#baggages'
     resources :baggages do
       post '/add_favorite' => 'favorites#add_favorite'
-    end
-    resources :carts, only: [] do
-      post '/rental' => 'carts#rental'
+      post '/add_cart' => 'carts#add_cart'
     end
   end
 

@@ -39,7 +39,8 @@ class CartsController < ApplicationController
   end
 
   def rental
-    @baggages = Cart.find(params[:cart_id]).baggages.where(rental_enabled: true)
+    cart = Cart.find_by(user_id: params[:user_id])
+    @baggages = cart.baggages.where(rental_enabled: true)
     user = User.find(params[:user_id])
     if @baggages.empty?
       raise :errors
@@ -63,6 +64,13 @@ class CartsController < ApplicationController
         raise :errors
       end
     end
+  end
+
+  def add_cart
+    @cart = Cart.find_by(user_id: params[:user_id])
+    CartsBaggage.create!(cart_id: @cart.id, baggage_id: params[:baggage_id])
+
+    render json: @cart.baggages
   end
 
   private
