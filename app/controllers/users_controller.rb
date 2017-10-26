@@ -31,6 +31,11 @@
       render json: @user
     end
 
+    def rental_baggages
+      @baggages = Baggage.where(rental_user_id: params[:user_id])
+      render json: @baggages
+    end
+
     private
 
     def user_params
