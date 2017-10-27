@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :baggages do
       post '/add_favorite' => 'favorites#add_favorite'
       post '/add_cart' => 'carts#add_cart'
+      post '/remove_favorite' => 'favorites#remove_favorite'
+      post '/remove_cart' => 'carts#remove_cart'
     end
   end
 

@@ -56,6 +56,15 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def remove_favorite
+    @favorite_baggage = FavoriteBaggage.find_by(favorite_id: User.find(params[:user_id]).favorite.id, baggage_id: params[:baggage_id])
+    if @favorite_baggage.destroy
+      render json: Favorite.find_by(user_id: params[:user_id]).baggages
+    else
+      raise :errors
+    end
+  end
+    
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite

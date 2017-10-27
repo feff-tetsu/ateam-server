@@ -74,6 +74,15 @@ class CartsController < ApplicationController
     render json: @cart.baggages
   end
 
+  def remove_cart
+    @cart_baggage = CartsBaggage.find_by(cart_id: User.find(params[:user_id]).cart.id, baggage_id: params[:baggage_id])
+    if @cart_baggage.destroy
+      render json: Cart.find_by(user_id: params[:user_id]).baggages
+    else
+      raise :errors
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
