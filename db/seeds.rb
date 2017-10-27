@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-['1','2','3'].each do |id|
-   User.create!({ email: "test@test#{id}", password: "testtest"})
-end
+#['1','2','3'].each do |id|
+#   User.create!({ email: "test@test#{id}", password: "testtest"})
+#end
 
 num = 1
-File.foreach("./db/baggage.csv") do |line|
+File.foreach("./db/baggage2.csv") do |line|
     data = line.split(',')
     name = data[0].delete!('"')
     size = data[1]
@@ -22,7 +22,7 @@ File.foreach("./db/baggage.csv") do |line|
     photo_url = data[7]
     rental_enabled = num%9 == 0 ? false : true
     Baggage.create!(
-        user_id: User.last.id, 
+        user_id: User.first.id, 
         name: name,
         size: size,
         sex: sex,
@@ -35,5 +35,5 @@ File.foreach("./db/baggage.csv") do |line|
     num += 1
 end
 
-User.create!({ email: "test@ateam.com", password: "ateampass", user_name: "sanamaru", points: 2000, avatar_url: "https://s3-ap-northeast-1.amazonaws.com/ateam-demoapp/avatar.png"})
+#User.create!({ email: "test@ateam.com", password: "ateampass", user_name: "sanamaru", points: 2000, avatar_url: "https://s3-ap-northeast-1.amazonaws.com/ateam-demoapp/avatar.png"})
 
