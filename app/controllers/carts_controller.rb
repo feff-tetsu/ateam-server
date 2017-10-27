@@ -9,7 +9,8 @@ class CartsController < ApplicationController
   end
 
   # GET /carts/1
-  def show
+  def show_cart
+    @cart = Cart.find_by(user_id: params[:user_id])
     render json: @cart.baggages
   end
 

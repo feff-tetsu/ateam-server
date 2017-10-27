@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     put '/get_point' => 'users#get_point'
     post '/rental' => 'carts#rental'
     get '/favorites' => 'favorites#baggages'
+    get '/carts' => 'carts#show_cart'
     resources :baggages do
       post '/add_favorite' => 'favorites#add_favorite'
       post '/add_cart' => 'carts#add_cart'

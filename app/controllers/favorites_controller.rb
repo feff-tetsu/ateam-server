@@ -39,7 +39,7 @@ class FavoritesController < ApplicationController
 
   # GET /users/:user_id/favorites/:favorite_id/baggages
   def baggages
-    @baggages = Favorite.find(User.find(params[:user_id]).favorite.id).baggages
+    @baggages = Favorite.find_by(user_id: params[:user_id]).baggages
     render json: @baggages
   end
 
